@@ -1,0 +1,7 @@
+pygame==2.6.1
+neat-python==2.0.0
+numpy==2.5.4
+matplotlib==3.11.2
+# Provides an ffmpeg binary for video recording if the system has none. Optional:
+# without it, recording falls back to saving image frames.
+imageio-ffmpeg==0.8.1

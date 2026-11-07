@@ -1,0 +1,96 @@
+# NEAT configuration for AI Racing Lab (neat-python 2.x: every value must be explicit).
+
+[NEAT]
+fitness_criterion     = max
+fitness_threshold     = 100000
+pop_size              = 50
+reset_on_extinction   = True
+no_fitness_termination = True
+
+[DefaultGenome]
+# Network shape: seven sensors + speed + heading relative to track -> steering + throttle.
+num_inputs              = 9
+num_outputs             = 2
+num_hidden              = 0
+feed_forward            = True
+initial_connection      = full_direct
+
+# Node activation. tanh output maps directly onto the [-1, 1] controls.
+activation_default      = tanh
+activation_mutate_rate  = 0.0
+activation_options      = tanh
+aggregation_default     = sum
+aggregation_mutate_rate = 0.0
+aggregation_options     = sum
+
+# Node bias
+bias_init_mean          = 0.0
+bias_init_stdev         = 1.0
+bias_init_type          = gaussian
+bias_max_value          = 30.0
+bias_min_value          = -30.0
+bias_mutate_power       = 0.25
+bias_mutate_rate        = 0.7
+bias_replace_rate       = 0.03
+
+# Node response multiplier
+response_init_mean      = 1.0
+response_init_stdev     = 0.0
+response_init_type      = gaussian
+response_max_value      = 30.0
+response_min_value      = -30.0
+response_mutate_power   = 0.0
+response_mutate_rate    = 0.0
+response_replace_rate   = 0.0
+
+# Unused by feed-forward networks, but required by the genome format.
+time_constant_init_mean    = 1.0
+time_constant_init_stdev   = 0.0
+time_constant_init_type    = gaussian
+time_constant_max_value    = 1.0
+time_constant_min_value    = 1.0
+time_constant_mutate_power = 0.0
+time_constant_mutate_rate  = 0.0
+time_constant_replace_rate = 0.0
+
+# Connection weights
+weight_init_mean        = 0.0
+weight_init_stdev       = 1.0
+weight_init_type        = gaussian
+weight_max_value        = 30.0
+weight_min_value        = -30.0
+weight_mutate_power     = 0.25
+weight_mutate_rate      = 0.8
+weight_replace_rate     = 0.03
+
+# Connection enable/disable
+enabled_default         = True
+enabled_mutate_rate     = 0.01
+enabled_rate_to_true_add  = 0.0
+enabled_rate_to_false_add = 0.0
+
+# Structural mutation: how networks grow new topology.
+conn_add_prob           = 0.15
+conn_delete_prob        = 0.08
+node_add_prob           = 0.06
+node_delete_prob        = 0.03
+single_structural_mutation = false
+structural_mutation_surer  = default
+
+# Speciation distance
+compatibility_disjoint_coefficient = 1.0
+compatibility_weight_coefficient   = 0.5
+
+[DefaultSpeciesSet]
+compatibility_threshold = 1.4
+
+[DefaultStagnation]
+species_fitness_func = max
+max_stagnation       = 15
+species_elitism      = 2
+
+[DefaultReproduction]
+# The best two genomes of each species pass to the next generation unchanged.
+elitism            = 2
+survival_threshold = 0.3
+min_species_size   = 2
